@@ -1,0 +1,21 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.RSSFeedPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width col2 clear">
+@Html.Partial("_LeftMenu") 
+<div class="three_quarter col ">
+<div class="block clear rssBlock">
+    <h2>
+        @Model.RSSFeedPage.Title</h2>
+    <div class="rssUpdate">
+        <ul>
+            @foreach(var feed in Model.RssFeed) 
+            {
+            <li><span class="date">@feed.Date</span> <a href="@feed.Link" rel="external" target="_blank">@feed.Title</a> 
+            <p>@feed.Description</p>
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,92 @@
+/*
+Responsive Template Name: RS-MQF 960 V.2
+File: Media Queries CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+@-ms-viewport{width:device-width;} /* http://msdn.microsoft.com/en-gb/library/ie/hh869615%28v=vs.85%29.aspx */
+
+/* 240 + 320px */
+
+
+@media screen and (min-width:240px) and (max-width:360px) {
+
+	
+	#header, #topnav, #container, #footer{max-width:95%; margin:0 auto;}
+	
+	#topnav ul{display:none;}
+
+	#header #hgroup{display:block; width:100%; float:none; margin:0 0 15px 0; padding:0;}
+	
+	#header, #footer{text-align:center;}
+	#footer p{float:none; line-height:1.6em;}
+	#footer p:first-child{margin-bottom:8px;}
+	#newsTicker marquee {  width: 59%;}
+}
+
+/* 480px */
+
+@media screen and (min-width:361px) and (max-width:600px) {
+
+	/* #header, body {background:blue;} */
+	#topnav li {margin: 0 0 0 15px;}
+}
+
+/* 768px */
+
+@media screen and (min-width:601px) and (max-width:800px) {
+	/*#header, body {background:green;} */
+	.col3 .one_third {}
+	#header, #topnav, #container, #footer{max-width:95%; margin:0 auto;}
+	
+	.profileBlock .title span{ display: inline-block; width: 75%;}
+	#topnav li {margin: 0 0 0 20px;}
+	#header #logo {width:70%;}
+	#header #hgroup {width: 30%;}
+}
+
+/* 960px */
+
+@media screen and (min-width:1920px) {
+	#header, #topnav, #container, #footer{max-width:960px; margin:0 auto;}
+	.profileBlock .title span{ display: inline-block; width: 80%;}
+	#topnav form{display:none;}
+	
+
+}
+
+
+@media screen and (max-width:768px) {
+	/* #header, body {background:purple;}*/
+
+	.one_half, 
+	.one_third, .two_third, 
+	.one_quarter, .two_quarter, .three_quarter, 
+	.one_fifth, .two_fifth, .three_fifth, .four_fifth, 
+	.one_sixth, .two_sixth, .three_sixth, .four_sixth, .five_sixth{display:block; float:none; width:auto; margin:0 0 2% 0; padding:0;}
+	#header, #topnav, #container, #footer{max-width:95%; margin:0 auto;}
+	.profileBlock .title span{ display: inline-block; width: 75%;}
+		
+	.profileListCont section.profileDesc { float: left; width: 100%; margin-left: -110px;}
+	.profileListCont section.profileDesc div{ float: none; }
+	.profileBlock .title img, .micrositeBlock .title img {  width: 25%;}
+	.profileDesc .left {  width: 50%;  margin-left: 125px;  width: 70%;}
+	.profileDesc .right {  margin-left: 125px;}
+	.profileDesc .emailIcon {margin-top:15px;}
+	.profileBlock .title, .micrositeBlock .title { position: relative;  margin-bottom: 20px;  margin-left: 125px;}
+	
+	#header #hgroup .siteSearchField, #header #hgroup .login { margin: 0px 5px 0 0;}
+	#header #hgroup .siteSearchField input {max-width: 140px;}
+	#header #hgroup .login a {text-indent: -999999px;  padding: 5px 0px; background-position:  9px 5px;}
+	#newsTicker marquee {  width: 59%;}
+	
+	
+}
+/* Hide The Jquery Generated Navigation Form from 601px upwards */
+
+@media screen and (min-width:601px) and (max-width:1920px) {
+
+	
+}

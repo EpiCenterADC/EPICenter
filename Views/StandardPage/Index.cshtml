@@ -1,0 +1,13 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.StandardPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width clear">
+    <div class="block clear overviewBlock">
+        <h1>
+            @Html.PropertyFor(p => p.StandardPage.Title)</h1>
+            @Html.PropertyFor(p => p.StandardPage.Body)
+    </div>
+   
+    
+</div>
+
+

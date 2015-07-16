@@ -1,0 +1,12 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.ProjectOverviewPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width col2 clear">
+    @Html.Partial("_LeftMenu")  
+    <div class="three_quarter col ">
+        <div class="block clear overviewBlock">
+            <h1>
+            @Html.PropertyFor(p => p.ProjectOverviewPage.Title)</h1>
+            @Html.PropertyFor(p => p.ProjectOverviewPage.Body)
+        </div>
+    </div>
+</div>

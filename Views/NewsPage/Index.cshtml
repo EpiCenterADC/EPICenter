@@ -1,0 +1,17 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.NewsPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+        <div class="full_width col2 clear">
+@Html.Partial("_LeftMenu") 
+<div class="three_quarter col ">
+            <div class="block clear overviewBlock">
+                <h1>
+                    @Model.NewsPage.Title</h1>
+                <h3>
+                    @Model.NewsPage.NewsSummary</h3>
+                     <p>
+                    @Model.NewsPage.NewsBody</p>
+            </div>
+        </div>
+        </div>
+

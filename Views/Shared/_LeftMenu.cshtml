@@ -1,0 +1,14 @@
+﻿@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.BasePageViewModel
+<div class="one_quarter col leftMenuCont first">
+    <div class="block clear ">
+        <div class="leftMenu">
+            <ul>
+             @foreach(var pages in @Model.GetChildPages(@Model.CurrentPage))
+                {
+
+                <li class="@(Model.IsCurrentPageActive(pages) == true ? "active" : "")"><a href="@UrlResolver.Current.GetUrl(@pages.ContentLink)">@pages.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

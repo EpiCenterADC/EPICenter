@@ -1,0 +1,43 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @using EPiCenterBaseProject.Extensions
+@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.HomePageBlockViewModel
+<div class="full_width col3 clear">
+    <div class="one_third col first">
+        <div class="block clear homeBlock">
+            <h2>
+                @Model.HomePageBlock.OverviewTitle</h2>
+            <div class="homeBlockImg">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="homeOverviewCont">
+               @Model.HomePageBlock.OverviewDescription
+            </div>
+            <a href="@UrlResolver.Current.GetUrl(@Model.HomePageBlock.OverviewPageLink)" class="readMore">read more</a>
+        </div>
+    </div>
+    <div class="one_third col">
+        <div class="block clear homeBlock">
+            <h2>
+                 @Model.HomePageBlock.MethodologyTitle</h2>
+            <div class="homeBlockImg">
+                <i class="fa fa-connectdevelop"></i>
+            </div>
+            <div class="homeMethodCont">
+                 @Model.HomePageBlock.MethodologyDescription
+            </div>
+            <a href="@UrlResolver.Current.GetUrl(@Model.HomePageBlock.MethodologyPageLink)" class="readMore">read more</a>
+        </div>
+    </div>
+    <div class="one_third col">
+        <div class="block clear homeBlock">
+            <h2>
+                 @Model.HomePageBlock.VisionTitle</h2>
+            <div class="homeBlockImg">
+                <i class="fa fa-bullseye"></i>
+            </div>
+            <div class="homeVisionCont">
+                @Model.HomePageBlock.VisionDescription
+            </div>
+            <a href="@UrlResolver.Current.GetUrl(@Model.HomePageBlock.VisionPageLink)" class="readMore">read more</a>
+        </div>
+    </div>
+</div>

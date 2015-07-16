@@ -1,0 +1,15 @@
+﻿@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.BannerBlockViewModel
+@if (!Model.IsPageInEditMode) {
+<div class="bannerCont">
+    <ul id="banners">
+        <li><a href="@UrlResolver.Current.GetUrl(Model.BannerBlock.BannerLink)" >
+            @Html.PropertyFor(p => p.BannerBlock.BannerImage)</a> </li>
+        <li><a href="@UrlResolver.Current.GetUrl(Model.BannerBlock.BannerLink2)">
+            @Html.PropertyFor(p => p.BannerBlock.BannerImage2)</a> </li>
+        <li><a href="@UrlResolver.Current.GetUrl(Model.BannerBlock.BannerLink3)">
+            @Html.PropertyFor(p => p.BannerBlock.BannerImage3)</a> </li>
+    </ul>
+    <div id="bannerNav">
+    </div>
+</div>
+} 

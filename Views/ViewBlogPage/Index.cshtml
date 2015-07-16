@@ -1,0 +1,20 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.ViewBlogPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="full_width col2 clear">
+    @Html.Partial("_LeftMenu")  
+    <div class="three_quarter col ">
+        <div class="block clear overviewBlock">
+        <div>Date Created: @Model.ViewBlogPage.StartPublish</div>
+        <div>Author: @Model.ViewBlogPage.Author</div>
+            @if(@Model.IsUserLoggedIn)
+            {
+                <a href="@Model.EditBlogLink" class="readMore">Edit Blog</a>
+            }
+        <p></p>
+            <h1>
+            @Html.PropertyFor(p => p.ViewBlogPage.Title)</h1>
+            @Html.PropertyFor(p => p.ViewBlogPage.BlogBody)
+        </div>
+    </div>
+</div>
