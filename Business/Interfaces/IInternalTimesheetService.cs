@@ -9,6 +9,6 @@ namespace EPiCenterBaseProject.Business.Interfaces
 {
     public interface IInternalTimesheetService
     {
-        IEnumerable<InternalTimesheet> GetUsers(InternalTimesheet internalTimesheetPage);
+       // IEnumerable<InternalTimesheet> GetUsers(InternalTimesheet internalTimesheetPage);
     }
 }
