@@ -1,0 +1,25 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @using EPiCenterBaseProject.Extensions
+@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.NewsListBlockViewModel
+<div class="block clear newsBlock">
+    <h2>
+        @Model.NewsListBlock.Title
+    </h2>
+    <div class="cont">
+        @if(Convert.ToInt32(Model.NewsListBlock.NoOfNews)> 0) {
+        <ul class="newsUpdates">
+            @foreach(var newsPage in Model.newsPages.Take(Convert.ToInt32(Model.NewsListBlock.NoOfNews)))
+            {
+            <li>@if(newsPage.NewsImage!=null) {
+                <div class="newsImg">
+                    <img src="@Url.ContentUrl(newsPage.NewsImage)" alt="Banner 1" /></div>
+                }
+                <div class="newsLinkCont">
+                    <span class="date">@newsPage.StartPublish.ToShortDateStr()</span> <a href="@UrlResolver.Current.GetUrl(newsPage.ContentLink)">
+                        @newsPage.Title</a>
+                </div>
+            </li>
+            }
+        </ul>
+        }
+    </div>
+</div>

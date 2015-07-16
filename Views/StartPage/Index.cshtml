@@ -1,0 +1,39 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.StartPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<!-- #############################	BANNER	######################################## -->
+<div class="full_width clear">
+    @Html.PropertyFor(p => p.StartPage.BannerContentArea)
+</div>
+<!-- ################################################################################################ -->
+@Html.PropertyFor(p => p.StartPage.OverviewContentArea)
+<!-- ################################################################################################ -->
+<div class="full_width col2 clear">
+    <div class="two_third col first">
+        <div class="block clear overviewBlock hide">
+            <h1>
+                EPi Overview</h1>
+            <div class="cont">
+                <p>
+                    Få bättre koll, smartare elförbrukning och sänkta kostnader. Få bättre koll, smartare
+                    elförbrukning och sänkta kostnader. Få bättre koll, smartare elförbrukning och sänkta
+                    kostnader. Få bättre koll, smartare elförbrukning och sänkta kostnader. Få bättre
+                    koll, smartare elförbrukning och sänkta kostnader. Få bättre koll, smartare elförbrukning
+                    och sänkta kostnader. Få bättre koll, smartare elförbrukning och sänkta kostnader.
+                    Få bättre koll, smartare elförbrukning och sänkta kostnader. Få bättre koll, smartare
+                    elförbrukning och sänkta kostnader.
+                </p>
+                <p>
+                    Få bättre koll, smartare elförbrukning och sänkta kostnader. Få bättre koll, smartare
+                    elförbrukning och sänkta kostnader. Få bättre koll, smartare elförbrukning och sänkta
+                    kostnader. Få bättre koll, smartare elförbrukning och sänkta kostnader. Få bättre
+                    koll, smartare elförbrukning och sänkta kostnader.
+                </p>
+                <a href="" class="readMore">read more</a>
+            </div>
+        </div>
+        @Html.PropertyFor(p => p.StartPage.NewsListContentArea) @Html.PropertyFor(p => p.StartPage.YammerContentArea)
+    </div>
+    <div class="one_third col">
+        @Html.PropertyFor(p => p.StartPage.RightColumnContentArea)
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@using System.Web.Optimization @using EPiServer.Web.Mvc.Html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>EPiCenter</title>
+    <meta charset="iso-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+<link rel="stylesheet" href="css/ie.css" type="text/css" media="all">
+<script src="scripts/ie/css3-mediaqueries.min.js"></script>
+<script src="scripts/ie/ie9.js"></script>
+<script src="scripts/ie/html5shiv.min.js"></script>
+<![endif]-->
+    @Styles.Render("~/bundles/css") @Scripts.Render("~/bundles/netrscripts")
+    <!-- END DEMO STYLING -->
+</head>
+<body>
+    <!-- ################################################################################################ -->
+    @Html.Partial("_Announcements")
+    @Html.Partial("_Header")
+    <div class="wrapper mainBody">
+        <div id="container">
+            <!-- content -->
+            @RenderBody()
+        </div>
+    </div>
+    <!-- Footer -->
+    @Html.Partial("_Footer")
+</body>
+</html>

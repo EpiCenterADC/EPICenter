@@ -1,0 +1,31 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html
+@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.ViewBlogListViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width col2 clear">
+    @Html.Partial("_LeftMenu")  
+    <div class="three_quarter col ">
+        <div class="block clear micrositeBlock">
+            <h1 class="title">
+                <span>@Model.ViewBlogList.Title</span>
+            </h1>
+            @if(@Model.IsUserLoggedIn)
+            {
+                <a href="@Model.CreateBlogLink" class="readMore">Create Blog</a>
+            }
+            <div class="cont profileListCont">
+                <ul>
+                    @foreach(var blogPage in Model.BlogListing) {
+                    <li class="clear">
+                        <section class="profileDesc four_fifth">
+							<h3><a href="@UrlResolver.Current.GetUrl(blogPage.ContentLink)">@blogPage.Title</a></h3>
+                            <span>Author: @blogPage.Author</span>
+                            <p>@blogPage.StartPublish</p>
+                            
+						</section>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

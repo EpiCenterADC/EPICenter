@@ -1,0 +1,29 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.BlogPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+ @Html.Action("SpecificScripts")
+<div class="full_width clear">
+    <div class="block clear loginBlock">
+        <h2>
+            Create Blog</h2>
+            <a href="@Model.ViewAllBlogPage" class="readMore">View All Blogs</a>
+        @using(Html.BeginForm("ManageBlogIndex","BlogPage")) {
+        <div class="field">
+            <label>
+                Blog Title</label>
+            <input type="text" id="BlogTitle" name="BlogTitle" maxlength="55" value="@Model.BlogTitle" />
+        </div>
+        <div class="field">
+            <label>
+                Blog Body</label>
+            <textarea name="BlogBody" id="BlogBody" cols="80" rows="20" class="wysiwyg" >@Model.Body</textarea>
+        </div>
+        <div class="field buttonCont">
+        <input type="hidden" id="pageId" name="pageId" value="@Request.QueryString["p"]">
+         <input type="hidden" id="pageURL" name="pageURL" value="@Request.Url.AbsoluteUri" />
+            <button type="submit" id="Login" name="buttonAction" value="submit" title="submit">
+                <span>Submit</span></button>
+            <input type="reset" name="buttonAction" id="" value="Reset" />
+        </div>
+        }
+    </div>
+</div>

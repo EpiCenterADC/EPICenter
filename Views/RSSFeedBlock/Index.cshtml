@@ -1,0 +1,15 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html
+@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.RSSFeedBlockViewModel
+<div class="block clear rssBlock">
+    <h2>
+        @Model.RSSFeedBlock.Title</h2>
+    <div class="rssUpdate">
+        <ul>
+            @foreach(var feed in Model.RssFeed) 
+            {
+            <li><span class="date">@feed.Date</span> <a href="@feed.Link" rel="external" target="_blank">@feed.Title</a> </li>
+            }
+        </ul>
+        <a href="@UrlResolver.Current.GetUrl(Model.RSSFeedBlock.ViewAllRSSFeeds)" class="readMore">read more</a>
+    </div>
+</div>

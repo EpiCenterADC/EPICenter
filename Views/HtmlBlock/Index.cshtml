@@ -1,0 +1,8 @@
+﻿@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.HtmlBlockViewModel
+<div class="full_width clear">
+        <div class="block clear overviewBlock">
+            <h1>
+            @Html.PropertyFor(p => p.HtmlBlock.Title)</h1>
+                @Html.PropertyFor(p => p.HtmlBlock.Body) 
+        </div>
+</div>

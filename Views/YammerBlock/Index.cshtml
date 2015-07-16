@@ -1,0 +1,23 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html
+@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.YammerBlockViewModel
+
+		<div class="block clear yammerBlock">
+			<h2>@Model.YammerBlock.Title</h2>
+			<div class="yammerUpdate1">
+				<script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
+                <div id="embedded-feed" style="height:400px;width:585px;"></div>
+                <script>
+                    yam.connect.embedFeed(
+                      { container: '#embedded-feed',
+                          network: 'capgemini.com',
+                          feedType: 'group',                // can be 'group', 'topic', or 'user'          
+                          feedId: '115473'                     // feed ID from the instructions above
+                        , config: {
+                            defaultGroupId: 115473      // specify default group id to post to 
+                        }
+                      });    
+                </script>    
+                <div id="embedded-feed"></div>
+			</div>
+		</div>
+	 

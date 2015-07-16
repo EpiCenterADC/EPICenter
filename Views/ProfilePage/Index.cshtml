@@ -1,0 +1,102 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.ProfilePageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width col2 clear">
+    @Html.Partial("_LeftMenu")
+    <div class="three_quarter col ">
+        <div class="block clear profileBlock">
+            <!--
+			<h1 class="projectTitle">
+				<span>Some Name</span>
+				<img class="projectLogo" src="images/eon_logo.png" alt="eon" / >
+			</h1>
+			-->
+            <div class="cont profileListCont">
+                <div class="profileCont">
+                    <form action="">
+                    <div class="profileTopCont clear">
+                        <section class="profilePic one_fifth">
+								<div><img src="@Url.ContentUrl(@Model.profilePhoto)" alt="" /></div>
+							</section>
+                        <section class="profileDesc four_fifth">
+								<h1 class="title">
+									@Model.ProfilePage.UserName
+                                    @if(Model.GetProjectImage(Model.CurrentPage) != String.Empty)
+                                    {
+									<img class="projectLogo" src="@Model.GetProjectImage(@Model.CurrentPage)" alt="eon" />
+                                    }
+								</h1>
+								<div class="left">
+									<h3><span>Role:</span> @Model.ProfilePage.Role</h3>
+                                    <div class="skils"><span>Designation:</span> @Model.ProfilePage.Designation</div>
+									<div class="skils"><span>Skills:</span> @Model.ProfilePage.Skills</div>
+								</div>
+								<div class="right">
+									<div class="emailIcon"><span>Email:</span> <a href="mailto:@Model.ProfilePage.Email">@Model.ProfilePage.Email</a></div>
+									<div class="phoneIcon"><span>Phone:</span> <a href="tel:@Model.ProfilePage.Phone">@Model.ProfilePage.Phone</a></div>
+								</div>
+							</section>
+                    </div>
+                    <div class="full_width clear">
+                        <div class="row">
+                            <div class="one_fifth">
+                                <label for="aboutTxt">
+                                    About:</label>
+                            </div>
+                            <div class="four_fifth">
+                                <span class="label">@Model.ProfilePage.About</span>
+                                <textarea col="10" rows="5" id="aboutTxt" class="inputText inputField"> </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one_fifth">
+                                <label for="experienceText">
+                                    Experience:</label>
+                            </div>
+                            <div class="four_fifth">
+                                <span class="label">@Model.ProfilePage.Experience</span>
+                                <input type="text" id="experienceText" class="inputText inputField" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one_fifth">
+                                <label for="certiText">
+                                    Certification:</label>
+                            </div>
+                            <div class="four_fifth">
+                                <span class="label">@Model.ProfilePage.Certifications</span>
+                                <input type="text" id="certiText" class="inputText inputField" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one_fifth">
+                                <label for="certiText">
+                                    Hobbies:</label>
+                            </div>
+                            <div class="four_fifth">
+                                <span class="label">@Model.ProfilePage.Hobbies</span>
+                                <input type="text" id="certiText" class="inputText inputField" />
+                            </div>
+                        </div>
+                        @if(Model.ProjectsWorkedOn.Count > 0)
+                        {
+                        <div class="row">
+                            <div class="one_fifth">
+                                <label for="certiText">
+                                    Projects Worked On:</label>
+                            </div>
+                            <div class="four_fifth">
+                                <ul>
+                                    @foreach(var project in Model.ProjectsWorkedOn) {
+                                    <img src="@Model.GetProjectImageFromCategory(@project)" alt="" />
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

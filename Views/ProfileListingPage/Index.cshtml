@@ -1,0 +1,34 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html
+@using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.ProfileListingPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width col2 clear">
+    @Html.Partial("_LeftMenu")  
+    <div class="three_quarter col ">
+        <div class="block clear micrositeBlock">
+            <h1 class="title">
+                <span>@Model.ProfileListingPage.Title</span>
+                @if(Model.GetProjectImage(Model.CurrentPage) != String.Empty)
+                 {
+                <img class="projectLogo" src="@Model.GetProjectImage(@Model.CurrentPage)" alt="eon">
+                }
+            </h1>
+            <div class="cont profileListCont">
+                <ul>
+                    @foreach(var profilePage in Model.ProfileList) {
+                    <li class="clear">
+                        <section class="profilePic one_fifth">
+							<img src="@Model.GetProfilePic(@profilePage.ContentLink.ID)" alt="">
+						</section>
+                        <section class="profileDesc four_fifth">
+							<h2><a href="@UrlResolver.Current.GetUrl(profilePage.ContentLink)">@profilePage.UserName</a></h2>
+							<h3><span>Role:</span> @profilePage.Role</h3>
+                            <div class="skils"><span>Designation:</span> @profilePage.Designation</div>
+							<div class="skils"><span>Skills:</span>@profilePage.Skills</div>
+						</section>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html @using EPiServer.Web.Mvc.Html @using EPiCenterBaseProject.Extensions
+@using EPiServer.XForms.Util @using EPiServer.Web.Routing @model EPiCenterBaseProject.Models.ViewModels.QuickPollBlockViewModel
+<div class="block clear pollBlock">
+    <h2>
+        @Model.QuickPollHeading</h2>
+    <!-- Poll cont-->
+    <div class="pollCont">
+        @using(Html.BeginForm("SaveQuickPollDataIndex","QuickPollBlock", new { pollID =
+        Model.PollID, PageURL = Request.Url.AbsoluteUri, ResultHeading = Model.ResultHeading
+        },FormMethod.Post)) {
+        <input type="hidden" id="pollId" value="@Model.PollID" />
+        <h4>
+            @Model.Question</h4>
+        if(!Model.IsUserVoted) {
+        <ul class="pollQuestionCont">
+            @if (!string.IsNullOrEmpty(Model.Alternative1)) {
+            <li>@Html.RadioButtonFor(model => model.Response, @Model.Alternative1, new { @id = "altgrpID1"
+                }) @Html.LabelFor(model => Model.Alternative1, @Model.Alternative1, new { @for =
+                "altgrpID1" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative2)) {
+            <li>@Html.RadioButtonFor(model => model.Response, @Model.Alternative2, new { @id = "altgrpID2"
+                }) @Html.LabelFor(model => Model.Alternative2, @Model.Alternative2, new { @for =
+                "altgrpID2" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative3)) {
+            <li>@Html.RadioButtonFor(model => model.Response, @Model.Alternative3, new { @id = "altgrpID3"
+                }) @Html.LabelFor(model => Model.Alternative3, @Model.Alternative3, new { @for =
+                "altgrpID3" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative4)) {
+            <li>@Html.RadioButtonFor(model => model.Response, @Model.Alternative4, new { @id = "altgrpID4"
+                }) @Html.LabelFor(model => Model.Alternative4, @Model.Alternative4, new { @for =
+                "altgrpID4" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative5)) {
+            <li>@Html.RadioButtonFor(model => model.Response, @Model.Alternative5, new { @id = "altgrpID5"
+                }) @Html.LabelFor(model => Model.Alternative5, @Model.Alternative5, new { @for =
+                "altgrpID5" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative6)) {
+            <li>@Html.RadioButtonFor(model => model.Response, Model.Alternative6, new { @id = "altgrpID6"
+                }) @Html.LabelFor(model => Model.Alternative6, @Model.Alternative6, new { @for =
+                "altgrpID6" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative7)) {
+            <li>@Html.RadioButtonFor(model => model.Response, Model.Alternative7, new { @id = "altgrpID7"
+                }) @Html.LabelFor(model => Model.Alternative7, @Model.Alternative7, new { @for =
+                "altgrpID7" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative8)) {
+            <li>@Html.RadioButtonFor(model => model.Response, Model.Alternative8, new { @id = "altgrpID8"
+                }) @Html.LabelFor(model => Model.Alternative8, @Model.Alternative8, new { @for =
+                "altgrpID8" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative9)) {
+            <li>li> @Html.RadioButtonFor(model => model.Response, Model.Alternative9, new { @id
+                = "altgrpID9" }) @Html.LabelFor(model => Model.Alternative9, @Model.Alternative9,
+                new { @for = "altgrpID9" }) </li>
+            } @if (!string.IsNullOrEmpty(Model.Alternative10)) {
+            <li>@Html.RadioButtonFor(model => model.Response, Model.Alternative10, new { @id = "altgrpID10"
+                }) @Html.LabelFor(model => Model.Alternative10, @Model.Alternative10, new { @for
+                = "altgrpID10" }) </li>
+            }
+        </ul>
+        <div class="pollButtonCont">
+            <input type="hidden" id="PageURL" name="PageURL" value="@Request.Url.AbsoluteUri" />
+            <input type="hidden" id="QuickPollUniqueId" name="QuickPollUniqueId" value="@Model.PollID" />
+            <input type="hidden" id="ResultHeading" name="ResultHeading" value="@Model.ResultHeading" />
+            <input type="submit" value="Vote" />
+        </div>
+        } }
+        <ul class="pollResultCont hide">
+            <li id="pollQuest1">
+                <div class="pollQ">
+                    What is the answer?</div>
+                <div class="pollQGraph">
+                    <span></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- //Poll cont-->

@@ -1,0 +1,45 @@
+﻿@using EPiServer.Web.Routing
+@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html @model EPiCenterBaseProject.Models.ViewModels.BasePageViewModel
+<div class="wrapper head">
+    <header id="header" class="clear">
+    <div id="logo">
+		<a href="@Model.HeaderViewModel.StartPage.LinkURL"><img src="~/UI/images/logo.png" alt="EPiCenter" /></a>
+	</div>
+    <div id="hgroup">
+		<div class="field siteSearchField">Welcome @Model.GetLoggedInUserName()</div>
+		<ul class="login">
+        @if(@Model.HeaderViewModel.IsUserLoggedIn == true)
+        {
+         <li><a href="/en/SignOutUser/">Sign Out</a></li>
+        }
+        else
+        {
+        <li><a href="/en/SignInUser/">My Login</a></li>
+        }
+		</ul>	
+    </div>
+  </header>
+</div>
+<div class="wrapper topNav">
+    <nav id="topnav">
+    <ul class="clear">
+        @foreach(var menu  in @Model.HeaderViewModel.MenuLinks)
+        {
+        <li class="@(Model.HeaderViewModel.IsCurrentPageActive(menu) == true ? "active" : "")">
+        <a href="@UrlResolver.Current.GetUrl(menu.ContentLink)">@menu.Name</a>
+        @if(@Model.HeaderViewModel.IsChildPageExists(menu))
+        {
+            <ul class="subMenu">
+	     @foreach(var pages in @Model.HeaderViewModel.GetChildPages(menu))
+         {
+          		<li><a href="@UrlResolver.Current.GetUrl(pages.ContentLink)" class="">@pages.Name</a></li>
+                }
+	      		
+	      	</ul>
+        }
+        </li>
+        }
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,16 @@
+﻿@using EPiServer.Web.Routing
+@model EPiCenterBaseProject.Models.ViewModels.BasePageViewModel
+@if(Model.AnnouncementsViewModel.ShowHide == true)
+{
+<div id="newsTicker">
+    <div class="newsTickerCont">
+        <span class="tickHead">Announcement</span>
+        <marquee scrolldelay="120">
+        @foreach(var news in Model.AnnouncementsViewModel.AnnouncementItems)
+        {
+				<a href="@UrlResolver.Current.GetUrl(news.ContentLink)">@news.Title</a> 
+                }
+			</marquee>
+    </div>
+</div>
+}

@@ -1,0 +1,28 @@
+﻿@using EPiServer.Shell.Web.Mvc.Html 
+@using EPiServer.Web.Mvc.Html
+@model EPiCenterBaseProject.Models.ViewModels.LoginPageViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="full_width clear">
+    <div class="block clear loginBlock">
+        <h2>
+            Login</h2>
+        @using(Html.BeginForm("")) {
+        <div class="field">
+            <label>
+                User Name</label>
+            @Html.TextBox("username")
+        </div>
+        <div class="field">
+            <label>
+                Password</label>
+            @Html.TextBox("password", null, new { @class = "textBoxStandard", type="password" })
+        </div>
+        <div class="field buttonCont">
+            <input type="hidden" id="pageURL" name="pageURL" value="@Request.Url.AbsoluteUri" />
+            <button type="submit" id="Login" name="buttonAction" value="login" title="Login">
+                <span>Login</span></button>
+            <input type="reset" name="buttonAction" id="" value="Reset" />
+        </div>
+        }
+    </div>
+</div>

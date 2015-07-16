@@ -1,0 +1,15 @@
+﻿<div id="survey-result" class="result">
+    <h2>@Model.ResultHeading</h2>
+    <div class="m-survey">
+        <div class="result">
+            <p><strong>@Model.TotalVotes personer</strong> has voted</p>
+            <ul class="stats cf">
+                @foreach (var vote in Model.pollStatistic)
+                {
+                    <li data-value="@vote.VoteCount">@vote.Alternative - <strong>(@vote.VoteCount röster)</strong></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
