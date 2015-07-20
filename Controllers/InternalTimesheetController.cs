@@ -19,6 +19,7 @@ namespace EPiCenterBaseProject.Controllers
         //   private readonly IInternalTimesheetService _internalTimesheetService = ServiceLocator.Current.GetInstance<IInternalTimesheetService>();
         private readonly IProfilePageService _profilePageService = ServiceLocator.Current.GetInstance<IProfilePageService>();
 
+
         public ActionResult Index(InternalTimesheet currentPage, ProfileListingPage currentPagec)
         {
             InternalTimesheetViewModel v = new InternalTimesheetViewModel();
@@ -32,19 +33,16 @@ namespace EPiCenterBaseProject.Controllers
             SelectMonth();
             yeartextbox(v);
             return View("Index", model);
-            var abc = Request[model.Month.ToString()];
         }
-
-
         public ActionResult SelectWeek()
         {
-            List<int> weeks = new List<int>();
+
             DateTime date = DateTime.Now;
             int No_of_Weeks = 0;
             int dayOfweek = 0;
-            //  int month = date.Month;
+            int month = 3;
             int year = date.Year;
-
+            List<int> weeks = new List<int>();
             // Get selected month from month dropdown
             InternalTimesheetViewModel internalViewModel = new InternalTimesheetViewModel();
             //var res=internalViewModel.Month.FirstOrDefault(s=>s.Value=);
@@ -53,11 +51,11 @@ namespace EPiCenterBaseProject.Controllers
             //    int selectedMonth = 1;
             //}
             //   int selectedMonth = SelectMonth().ExecuteResult(
-            int selectedMonth = int.Parse(Convert.ToString(internalViewModel.Month.ToString()));
+            //int selectedMonth = int.Parse(Convert.ToString(internalViewModel.Month.ToString()));
             // int monthInDigit = DateTime.ParseExact(Convert.ToString(internalViewModel.Month.ToString()), "MMM", CultureInfo.InvariantCulture).Month;
             //int selectedMonth = 2;
-            DateTime beginingOfThisMonth = new DateTime(year, selectedMonth, 1);
-            int daysThisMonth = DateTime.DaysInMonth(year, selectedMonth);
+            DateTime beginingOfThisMonth = new DateTime(year, month, 1);
+            int daysThisMonth = DateTime.DaysInMonth(year, month);
             for (int i = 0; i < daysThisMonth; i++)
             {
                 if (beginingOfThisMonth.AddDays(i).DayOfWeek == beginingOfThisMonth.DayOfWeek)
@@ -70,6 +68,7 @@ namespace EPiCenterBaseProject.Controllers
                 DateTime test_date = DateTime.ParseExact(beginingOfThisMonth.ToString(), "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                 int week_of_year = (int)Math.Ceiling(Convert.ToDouble(test_date.DayOfYear) / 7);
                 weeks.Add(week_of_year);
+                //states.Add(new SelectListItem { Text = Convert.ToString(week_of_year), Value = Convert.ToString(week_of_year) });
                 int count = 0, incWeek = 7;
                 for (int k = 1; k < incWeek; k++)
                 {
@@ -87,24 +86,12 @@ namespace EPiCenterBaseProject.Controllers
             ViewData["WeekNumber"] = new SelectList((List<int>)weeks);
             return View();
         }
-
-        public ActionResult SelectMonth()
-        {
-            //  List<string> months = new List<string>() { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-            // ViewData["Month"] = months;
-            // ViewData["currentmonth"]= DateTime.Today.Date.Month;
-            InternalTimesheetViewModel i = new InternalTimesheetViewModel();
-            ViewData["Month"] = i.Month;
-            return View();
-        }
-
         public ActionResult yeartextbox(InternalTimesheetViewModel v)
         {
             //do something
 
             return View(); //return "Search" view to the user
         }
-
         //public ActionResult selectDate()
         //{
         //    InternalTimesheetViewModel i = new InternalTimesheetViewModel();
@@ -112,6 +99,179 @@ namespace EPiCenterBaseProject.Controllers
         //    return View();
         //}
 
+        #region Priti
+        List<SelectListItem> weeksno = new List<SelectListItem>();
+        public ActionResult SelectMonth()
+        {
+            List<SelectListItem> li = new List<SelectListItem>();
 
+            li.Add(new SelectListItem { Text = DateTime.Now.ToString("MMMM"), Value = "0" });
+
+            li.Add(new SelectListItem { Text = "January", Value = "1" });
+
+            li.Add(new SelectListItem { Text = "February", Value = "2" });
+
+            li.Add(new SelectListItem { Text = "March", Value = "3" });
+
+            li.Add(new SelectListItem { Text = "April", Value = "4" });
+
+            li.Add(new SelectListItem { Text = "May", Value = "5" });
+
+            li.Add(new SelectListItem { Text = "June", Value = "6" });
+            li.Add(new SelectListItem { Text = "July", Value = "7" });
+            li.Add(new SelectListItem { Text = "August", Value = "8" });
+            li.Add(new SelectListItem { Text = "September", Value = "9" });
+            li.Add(new SelectListItem { Text = "October", Value = "10" });
+            li.Add(new SelectListItem { Text = "November", Value = "11" });
+            li.Add(new SelectListItem { Text = "December", Value = "12" });
+            ViewData["month"] = li;
+            return View();
+        }
+
+        public JsonResult GetStates(string id)
+        {
+
+            // List<SelectListItem> states = new List<SelectListItem>();
+
+            switch (id)
+            {
+                case "0":
+                    getdata(DateTime.Now.Month);
+                    break;
+
+                case "1":
+                    getdata(1);
+                    break;
+                case "2":
+                    getdata(2);
+                    break;
+
+                case "3":
+                    getdata(3);
+                    break;
+                case "4":
+                    getdata(4);
+                    break;
+                case "5":
+                    getdata(5);
+                    break;
+                case "6":
+                    getdata(6);
+                    break;
+                case "7":
+                    getdata(7);
+                    break;
+                case "8":
+                    getdata(8);
+                    break;
+                case "9":
+                    getdata(9);
+                    break;
+                case "10":
+                    getdata(10);
+                    break;
+                case "11":
+                    getdata(11);
+                    break;
+                case "12":
+                    getdata(12);
+                    break;
+
+            }
+
+            return Json(new SelectList(weeksno, "Value", "Text"));
+        }
+
+        public void getdata(int month1)
+        {
+            DateTime date = DateTime.Now;
+            int No_of_Weeks = 0;
+            int dayOfweek = 0;
+            int month = month1;
+            int year = date.Year;
+            List<int> weeks = new List<int>();
+            // Get selected month from month dropdown
+            InternalTimesheetViewModel internalViewModel = new InternalTimesheetViewModel();
+
+            DateTime beginingOfThisMonth = new DateTime(year, month, 1);
+            //  string EndOftheweekday = new DateTime(year, month, 7);
+            int daysThisMonth = DateTime.DaysInMonth(year, month);
+            DateTime dt = new DateTime(year, month, daysThisMonth);
+            for (int i = 0; i < daysThisMonth; i++)
+            {
+                if (i == 0)
+                {
+                    if (beginingOfThisMonth.AddDays(i).DayOfWeek == beginingOfThisMonth.DayOfWeek)
+
+                        No_of_Weeks = ++dayOfweek;
+                }
+                else
+                {
+                    if (beginingOfThisMonth.AddDays(i).DayOfWeek == DayOfWeek.Monday)
+
+                        No_of_Weeks = ++dayOfweek;
+                }
+            }
+
+            for (var i = 1; i <= No_of_Weeks; i++)
+            {
+                //"09/07/2015"
+                DateTime test_date = DateTime.ParseExact(beginingOfThisMonth.ToString(), "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                int week_of_year = (int)Math.Ceiling(Convert.ToDouble(test_date.DayOfYear) / 7);
+                // weeks.Add(week_of_year);
+                weeksno.Add(new SelectListItem { Text = Convert.ToString(week_of_year), Value = Convert.ToString(week_of_year) });
+                int count = 0, incWeek = 7;
+                for (int k = 1; k <= incWeek; k++)
+                {
+                    if (beginingOfThisMonth.AddDays(k).DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        if (beginingOfThisMonth.AddDays(k).DayOfWeek != DayOfWeek.Sunday)
+                        { count++; }
+                        else { incWeek++; }
+                    }
+                    else { incWeek++; }
+                }
+                beginingOfThisMonth = beginingOfThisMonth.AddDays(count);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+        #endregion
+
+        #region Snehal
+        public JsonResult TagSearch(string term, InternalTimesheet currentPage, ProfileListingPage currentPagec)
+        {
+            // Get Tags from database
+            string[] tags = { "ASP.NET", "WebForms", 
+                    "MVC", "jQuery", "ActionResult", 
+                    "MangoDB", "Java", "Windows" };
+
+            var model = CreateModel(new InternalTimesheetViewModel
+            {
+                InternalTimesheet = currentPage,
+                UserList = _profilePageService.GetAllProfiles(currentPagec)                
+            });
+
+            List<string> name = new List<string>();
+            foreach (var a in model.UserList.Where(t=>t.Name.StartsWith(term)))
+            {
+                name.Add(a.Name);
+            }
+
+            return this.Json(name, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

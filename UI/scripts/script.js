@@ -1,5 +1,6 @@
+
 $(document).ready(function() {
-   
+  
 	$('.mainBody').css('min-height',eval($(window).height() - $('.head').height() - $('.footer').height() -20));
 
    //New Ticker stop on mouseover
@@ -62,7 +63,7 @@ $(document).ready(function() {
       if($('.pollQuestionCont').length == 0){
         $('.pollResultCont').html("Loading Poll Result...").removeClass('hide');
         var form = $('.pollCont form');
-        showPollResult(form)
+        showPollResult(form);
       }
 
        //Generate Poll Result Graph
@@ -100,27 +101,30 @@ $(document).ready(function() {
         });
       }
       //Poll
+	/*  INTERNAL TIMESHEET JAVA SCRIPT, jQUERY  */
 	
-    /*  INTERNAL TIMESHEET JAVA SCRIPT, jQUERY  */
+	
+//            	$('#itsTable').dataTable( {
+//				    "bPaginate": false,
+//				    "bInfo": false
+//				  } );
+//				$('#utlTable').dataTable();
+			
 		
-            	$('#itsTable').dataTable( {
-				    "bPaginate": false,
-				    "bInfo": false
-				  } );
-				$('#utlTable').dataTable();
-					
 		
 			var rowCount = $('#itsTable tbody tr').length;
 					
 			
 			 //Add the row
-			 var tbl = $('#itsTable').DataTable();
+//			 var tbl = $('#itsTable').DataTable();
 				$('#its').on( 'click', function () {
 					alert("Adding new rows");
 					for(var i=0;i<=4;i++){
 					tbl.row.add( 
 					 [++rowCount,'Week','<input class="date" type="text" name="date"/>','<select class="project" name="project" ><option value="p1">Project Summary</option><option value="p2">MHC</option><option value="p3">SLL</option><option value="p4">Alfa Laval</option><option value="p4">E.ON</option></select>','<input class="case" type="text" name="case"/>','<input class="title" type="text" name="title"/>','<select class="task" name="task" > <option value="t1">t1</option> <option value="t2">t2</option> <option value="t3">t3</option><option value="t4">t4</option></select>','<input class="actualHours" type="text" name="actualHours"/>','<input class="billableHours" type="text" name="billableHours"/>','<input class="description" type="text" name="description"/>','<input class="comment" type="text" name="comment"/>','<a class="delete" href="#" title="Delete Entire Row"></a> ']
-					).draw();}					                
+					).draw();}
+					
+                  
 				   
                 });
 				
@@ -138,38 +142,42 @@ $(document).ready(function() {
 					});
 					
 			
-			//AUTOCOMPLETE SCRIPT
-			$(function() {
-				var availableTags = [
-				  "Amol Joshi",
-				  "Abhijit Rahate",
-				  "Akshata Patil",
-				  "Amit Chugh",
-				  "Amol Mahul",
-				  "Archana Punyavant",
-				  "Asmita Ukey",
-				  "Mahesh badale",
-				  "Malik Kadiwar",
-				  "Puneet Mahajan",
-				  "Purushottam Kumar",
-				  "Sameer Bhandwalkar",
-				  "Shailandra Dukane",
-				  "Swati Patil",
-				  "Trupti Dandekar",
-				  "Vipin Karnath",
-				  "Viral Jain",
-				  "Vrinda Bhayani",
-				  "Yogesh Sandhokar",
-				  "Shashank Shinde",
-				  "Bhavesh Sachdev",
-				  "Snehal Jadhav",
-				  "Priti Jadhav",
-				  "Priyanka"
-				];
-				$( "#tags" ).autocomplete({
-				  source: availableTags
-				});
-			  });			  
-	  
-			  	/* END INTERNAL TIMESHEET JAVA SCRIPT, jQUERY  */
+//			//AUTOCOMPLETE SCRIPT
+//			$(function() {
+//				var availableTags = [
+//				  "Amol Joshi",
+//				  "Abhijit Rahate",
+//				  "Akshata Patil",
+//				  "Amit Chugh",
+//				  "Amol Mahul",
+//				  "Archana Punyavant",
+//				  "Asmita Ukey",
+//				  "Mahesh badale",
+//				  "Malik Kadiwar",
+//				  "Puneet Mahajan",
+//				  "Purushottam Kumar",
+//				  "Sameer Bhandwalkar",
+//				  "Shailandra Dukane",
+//				  "Swati Patil",
+//				  "Trupti Dandekar",
+//				  "Vipin Karnath",
+//				  "Viral Jain",
+//				  "Vrinda Bhayani",
+//				  "Yogesh Sandhokar",
+//				  "Shashank Shinde",
+//				  "Bhavesh Sachdev",
+//				  "Snehal Jadhav",
+//				  "Priti Jadhav",
+//				  "Priyanka"
+//				];
+//				$("#tags1").autocomplete({
+//				  source: availableTags
+//				});
+//			  });
+//			  /* END INTERNAL TIMESHEET JAVA SCRIPT, jQUERY  */
+         
+						
 });
+
+
+ 

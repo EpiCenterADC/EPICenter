@@ -353,6 +353,7 @@
     <Content Include="UI\scripts\ie\html5shiv.min.js" />
     <Content Include="UI\scripts\ie\ie9.js" />
     <Content Include="UI\scripts\jquery-1.11.1.js" />
+    <Content Include="UI\scripts\jquery-1.7.1.min.js" />
     <Content Include="UI\scripts\jquery-mobilemenu.min.js" />
     <Content Include="UI\scripts\jquery-ui.js" />
     <Content Include="UI\scripts\jquery.1.9.0.min.js" />
@@ -362,6 +363,7 @@
     <Content Include="UI\scripts\libs\jquery.cycle.lite.js" />
     <Content Include="UI\scripts\libs\jquery.cycle2.min.js" />
     <Content Include="UI\scripts\script.js" />
+    <Content Include="UI\scripts\script1.js" />
     <Content Include="UI\TinyMCE\tinymce.basic.js" />
     <Content Include="UI\TinyMCE\tiny_mce\jquery.tinymce.js" />
     <Content Include="UI\TinyMCE\tiny_mce\langs\en.js" />
@@ -718,7 +720,6 @@
     <Content Include="Views\HomePageBlock\Index.cshtml" />
     <Content Include="Views\ContentPage\Index.cshtml" />
     <Content Include="Views\TaskTypePage\Index.cshtml" />
-    <Content Include="Views\Timesheet\Index.cshtml" />
     <Content Include="Views\InternalTimesheet\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -736,10 +737,6 @@
     </Content>
     <Reference Include="EPiServer">
       <HintPath>bin\EPiServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EPiServer.UI">
-      <HintPath>bin\EPiServer.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EPiServer.BaseLibrary">
@@ -789,7 +786,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>36150</DevelopmentServerPort>
+          <DevelopmentServerPort>36053</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://rightshore2:17012/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
