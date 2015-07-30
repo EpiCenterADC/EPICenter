@@ -12,13 +12,13 @@ $(document).ready(function() {
    });
 
    //Banner 
-  $('#banners').cycle({ 
-	    fx:     'fade',
-	    timeout: 5000,
-	    pager:  '#bannerNav',
-	    speed: 1000,
-	    fit: 0
-	});
+//  $('#banners').cycle({ 
+//	    fx:     'fade',
+//	    timeout: 5000,
+//	    pager:  '#bannerNav',
+//	    speed: 1000,
+//	    fit: 0
+//	});
 	
   // Add class to diffrenciate home page and other pages.	
     var pageClass = (!$('#topnav li').first().hasClass('active')) ? 'innerPage' :  'homePage' ;
@@ -111,73 +111,133 @@ $(document).ready(function() {
 //				$('#utlTable').dataTable();
 			
 		
-		
-			var rowCount = $('#itsTable tbody tr').length;
-					
-			
-			 //Add the row
-//			 var tbl = $('#itsTable').DataTable();
-				$('#its').on( 'click', function () {
-					alert("Adding new rows");
-					for(var i=0;i<=4;i++){
-					tbl.row.add( 
-					 [++rowCount,'Week','<input class="date" type="text" name="date"/>','<select class="project" name="project" ><option value="p1">Project Summary</option><option value="p2">MHC</option><option value="p3">SLL</option><option value="p4">Alfa Laval</option><option value="p4">E.ON</option></select>','<input class="case" type="text" name="case"/>','<input class="title" type="text" name="title"/>','<select class="task" name="task" > <option value="t1">t1</option> <option value="t2">t2</option> <option value="t3">t3</option><option value="t4">t4</option></select>','<input class="actualHours" type="text" name="actualHours"/>','<input class="billableHours" type="text" name="billableHours"/>','<input class="description" type="text" name="description"/>','<input class="comment" type="text" name="comment"/>','<a class="delete" href="#" title="Delete Entire Row"></a> ']
-					).draw();}
-					
-                  
-				   
-                });
+		var rowCount;
 				
-		//Deletes Row
-				$('#itsTable').on('click','.delete',function(e){
-						var rowCount = $('#itsTable tbody tr').length;
-						console.log(rowCount);
-						if(rowCount > 1){
-						tbl.row( $(this).parents('tr') ).remove().draw();
-						}
-						else{
-							alert("Can not delete All row");
-						}
-						
-					});
-					
-			
-//			//AUTOCOMPLETE SCRIPT
-//			$(function() {
-//				var availableTags = [
-//				  "Amol Joshi",
-//				  "Abhijit Rahate",
-//				  "Akshata Patil",
-//				  "Amit Chugh",
-//				  "Amol Mahul",
-//				  "Archana Punyavant",
-//				  "Asmita Ukey",
-//				  "Mahesh badale",
-//				  "Malik Kadiwar",
-//				  "Puneet Mahajan",
-//				  "Purushottam Kumar",
-//				  "Sameer Bhandwalkar",
-//				  "Shailandra Dukane",
-//				  "Swati Patil",
-//				  "Trupti Dandekar",
-//				  "Vipin Karnath",
-//				  "Viral Jain",
-//				  "Vrinda Bhayani",
-//				  "Yogesh Sandhokar",
-//				  "Shashank Shinde",
-//				  "Bhavesh Sachdev",
-//				  "Snehal Jadhav",
-//				  "Priti Jadhav",
-//				  "Priyanka"
-//				];
-//				$("#tags1").autocomplete({
-//				  source: availableTags
-//				});
-//			  });
-//			  /* END INTERNAL TIMESHEET JAVA SCRIPT, jQUERY  */
+
+				$('#addBtn').on('click',function(){
+									
+				rowCount= $('#itsTable tbody tr').length;
+				for(var i=0; i<=4; i++){
+				$("#itsTable tr:last").after("<tr>"+ 
+					"<td class='sno' scope='row'>"+ ++rowCount +"</td>" +
+					"<td>Week no</td>" +
+				    "<td><select class='aa'></select></td>"+
+					"<td><select class='addrowproject' name='project'></td>"+
+					"<td>"+
+					"<input class='case' type='text' name='case'/>"+"</td>"+
+					"<td><input class='title' type='text' name='title'/></td>"+
+					"<td><select class='addrowtask' name='task'></td>"+
+				    "<td><input class='actualHours' type='text' name='actualHours'/>"+"</td>"+
+					"<td><input class='billableHours' type='text' name='billableHours'/>"+
+					"</td>"+
+					"<td><input class='description' type='text' name='description'/>"+"</td>"+
+					"<td><input class='comment' type='text' name='comment'/>"+"</td>"+
+					"<td><a class='delete' href='#'' title='Delete Entire Row'></a>"+"</td>"+
+					"</tr>");
+					}
+
+
+                    binddrpdays($('.abc').val(),$('#txtYear').val());
+							 bindDropDownProject();
+         bindDropDownTaskPages();		
+									
+				});
+								
+
+				
+							$('#itsTable').on('click','.delete',function(e){
+							alert("delete");
+							rowCount= $('#itsTable tbody tr').length;
+							
+								var tr = $(this).closest('tr');
+						        tr.css("background-color","#FF3700");
+						        tr.fadeOut(400, function(){
+						        	if(rowCount > 2){
+						            tr.remove();
+						        }
+						        else{
+						        	alert("Can Not delete All Rows");
+						        }
+						        });
+						   
+						        return false;
+
+							});
+
          
+         $('.abc').on('change',function(){
+         var a  = $('.abc').val();
+         var b = $('#txtYear').val();
+
+         binddrpdays(a,b);
+        
+
+        
+         });
+
+
+            function binddrpdays(a,b){
+            alert(a+','+b);
+
+                $.ajax({
+                    url: "selectDateForSelectedWeek",
+                    data: {       
+                        'year': b,
+                        'weeknumber': a    
+                    },
+                    dataType: "json",
+                    type: 'POST',
+                    success: function (data) {
+                        $('.cc').empty();
+                        $.each(data, function(index, value) {
+                        $('.cc,.aa').append($('<option>').text(value).attr('value', index));
+                        });
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+                };
+
+                function bindDropDownProject(){
+
+                $.ajax({
+                    url: "bindDropDownProject",
+                    
+                    dataType: "json",
+                    type: 'POST',
+                    success: function (data) {
+                    alert(data);
+                        $('.addrowproject').empty();
+                        $.each(data, function(index, value) {
+                        $('.addrowproject').append($('<option>').text(value).attr('value', index));
+                        });
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+                };
+
+                function bindDropDownTaskPages(){
+
+                $.ajax({
+                    url: "bindDropDownTaskPages",
+                    dataType: "json",
+                    type: 'POST',
+                    success: function (data) {
+                    alert(data);
+                        $('.addrowtask').empty();
+                        $.each(data, function(index, value) {
+                        $('.addrowtask').append($('<option>').text(value).attr('value', index));
+                        });
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+
+          }
+     
 						
 });
-
-
- 

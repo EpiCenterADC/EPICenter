@@ -9,6 +9,10 @@ using System.Globalization;
 using EPiCenterBaseProject.Business.Interfaces;
 using EPiServer.ServiceLocation;
 using System.Web.Security;
+using EPiServer.Core;
+using EPiCenterBaseProject.Business;
+using EPiServer;
+using Newtonsoft.Json;
 
 namespace EPiCenterBaseProject.Controllers
 {
@@ -22,6 +26,7 @@ namespace EPiCenterBaseProject.Controllers
 
         public ActionResult Index(InternalTimesheet currentPage, ProfileListingPage currentPagec)
         {
+            FormCollection f = new FormCollection();
             InternalTimesheetViewModel v = new InternalTimesheetViewModel();
             var model = CreateModel(new InternalTimesheetViewModel
             {
@@ -29,8 +34,10 @@ namespace EPiCenterBaseProject.Controllers
                 UserList = _profilePageService.GetAllProfiles(currentPagec)
                 ////UserList = _internalTimesheetService.GetUsers(currentPage)
             });
+            //SaveInternalTimesheetData(f);
             SelectWeek();
             SelectMonth();
+            selectDate();
             yeartextbox(v);
             return View("Index", model);
         }
@@ -92,12 +99,78 @@ namespace EPiCenterBaseProject.Controllers
 
             return View(); //return "Search" view to the user
         }
-        //public ActionResult selectDate()
-        //{
-        //    InternalTimesheetViewModel i = new InternalTimesheetViewModel();
-        //    ViewData["Date"] = i.Date;
-        //    return View();
-        //}
+
+        public ActionResult selectDate()
+        {
+            InternalTimesheetViewModel i = new InternalTimesheetViewModel();
+            var x = i.Date;
+            ViewData["Date"] = x;
+            return View();
+        }
+
+        
+        public JsonResult selectDateForSelectedWeek(int year,int weeknumber)
+        {
+            InternalTimesheetViewModel i = new InternalTimesheetViewModel();
+            var x = i.Dateforselectedweek(year,weeknumber);
+            //ViewData["Date"] = x;
+            //return View();
+            //return null;
+            return Json(x, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult bindDropDownProject()
+        {
+            var projects= FindPages().Select(u => u.Name).DefaultIfEmpty();
+            return Json(projects,JsonRequestBehavior.AllowGet);
+
+            //return Json(projects, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult bindDropDownTaskPages()
+        {
+            var TaskPages = FindPagesTaskParent().Select(u => u.Name).DefaultIfEmpty();
+            return Json(TaskPages, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public class getAllChildren
+        {
+            public string name { get; set; }
+            public string URL { get; set; }
+
+
+        }
+
+        public IEnumerable<PageData> FindPagesTaskParent()
+        {
+            PageReference rootPage2 = DataFactory.Instance.GetPage(ContentReference.StartPage).GetPropertyValue<PageReference>("rootpage2");
+            IEnumerable<PageData> childPages2 = DataFactory.Instance.GetChildren<PageData>(rootPage2);
+            return childPages2;
+        }
+
+        public IEnumerable<PageData> FindPages()
+        {
+            List<PageData> childPagesAll = new List<PageData>();
+            PageReference rootPage = DataFactory.Instance.GetPage(ContentReference.StartPage).GetPropertyValue<PageReference>("rootpage");
+            PageReference rootPage1 = DataFactory.Instance.GetPage(ContentReference.StartPage).GetPropertyValue<PageReference>("rootpage1");
+
+            getAllChildren child = new getAllChildren();
+            IEnumerable<PageData> childPages = DataFactory.Instance.GetChildren<PageData>(rootPage);
+
+            foreach (PageData p in childPages)
+            {
+                childPagesAll.Add(p);
+
+            }
+            IEnumerable<PageData> childPages1 = DataFactory.Instance.GetChildren<PageData>(rootPage1);
+            foreach (PageData p in childPages1)
+            {
+                childPagesAll.Add(p);
+
+            }
+            return childPagesAll;
+        }
 
         #region Priti
         List<SelectListItem> weeksno = new List<SelectListItem>();
@@ -260,11 +333,11 @@ namespace EPiCenterBaseProject.Controllers
             var model = CreateModel(new InternalTimesheetViewModel
             {
                 InternalTimesheet = currentPage,
-                UserList = _profilePageService.GetAllProfiles(currentPagec)                
+                UserList = _profilePageService.GetAllProfiles(currentPagec)
             });
 
             List<string> name = new List<string>();
-            foreach (var a in model.UserList.Where(t=>t.Name.StartsWith(term)))
+            foreach (var a in model.UserList.Where(t => t.Name.StartsWith(term)))
             {
                 name.Add(a.Name);
             }
@@ -273,5 +346,25 @@ namespace EPiCenterBaseProject.Controllers
         }
 
         #endregion
+
+        ////public ActionResult SaveInternalTimesheetData()
+        ////{
+        ////    return View();
+        ////}
+
+        //[HttpPost]
+        //public ActionResult SaveInternalTimesheetData(FormCollection f)
+        //{
+        //    var savetimesheet = new InternalTimesheet()
+        //    {
+        //        Title = f.Get("title")
+        //    };
+        //    var store = DynamicDataStoreFactory.Instance.GetStore(typeof(InternalTimesheet));
+        //    store.Save(savetimesheet);
+        //    return View();
+        //}
     }
 }
+
+
+

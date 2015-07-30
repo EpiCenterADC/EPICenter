@@ -7,10 +7,12 @@ using EPiCenterBaseProject.Business.Interfaces;
 using EPiCenterBaseProject.Models.Pages;
 using EPiServer.ServiceLocation;
 using EPiServer;
+using EPiServer.Data.Dynamic;
 
 namespace EPiCenterBaseProject.Business
 {
     public class InternalTimesheetService : IInternalTimesheetService
     {
+        
     }
 }
